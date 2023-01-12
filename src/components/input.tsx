@@ -1,26 +1,27 @@
 import { taskInterface } from '../types';
-import { useState } from "react";
+import { useRef } from "react";
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 export default function Input({re}:any) {
-    const [inputVal, setInputVal] = useState('')
+    const refInput: any = useRef<HTMLInputElement>(null)
     function hundleSubmit(evt: React.FormEvent<HTMLFormElement>){
         evt.preventDefault()
         const date = new Date();
+        const id = Math.floor(Math.random() * 1000);
         const dateSub = `${months[date.getMonth()]} ${date.getDate()}`
         const newTask:taskInterface = {
-            task: inputVal,
+            task: refInput.current.value,
             compleat: false,
             priority: 0,
             dateCreation: dateSub,
-            id: Math.floor(Math.random() * 1000),
+            id: id,
         }
-        localStorage.setItem(`item${localStorage.length}`, JSON.stringify(newTask))
-        setInputVal('')
+        localStorage.setItem(`item${id}`, JSON.stringify(newTask))
+        refInput.current.value = '';
         re()
     }
     return (
       <form onSubmit={hundleSubmit}>
-        <input value={inputVal} required type='text' onChange={evt => setInputVal(evt.target.value)}/>
+        <input required type='text' ref={refInput}/>
         <button type='submit'>submit</button>
       </form>
     );
