@@ -1,7 +1,7 @@
 import { taskInterface } from '../types';
 import { useRef } from "react";
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-export default function Input({re}:any) {
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+export default function Input({re, colorText}:any) {
     const refInput: any = useRef<HTMLInputElement>(null)
     function hundleSubmit(evt: React.FormEvent<HTMLFormElement>){
         evt.preventDefault()
@@ -21,8 +21,8 @@ export default function Input({re}:any) {
     }
     return (
       <form onSubmit={hundleSubmit}>
-        <input required type='text' ref={refInput}/>
-        <button type='submit'>submit</button>
+        <input className={'inputMain ' + colorText} required type='text' ref={refInput}/>
+        <button className={'submitMain'} type='submit'>submit</button>
       </form>
     );
   }
