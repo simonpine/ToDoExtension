@@ -17,7 +17,6 @@ function App() {
   const [succes, setSuccess] = useState<number>(0)
   const [pending, setPending] = useState<number>(0)
   const [refrsh, setRefresh] = useState<number>(0)
-  const [refrsh2, setRefresh2] = useState<number>(0)
   const [items, setItems] = useState<taskInterface[]>([])
   const [items2, setItems2] = useState<taskInterface[]>([])
   useEffect(() => {
@@ -86,7 +85,6 @@ function App() {
       setModeAppcont('light' + 'ContApp')
       setModeApp('light' + 'App')
     }
-    // setRefresh2(Math.random())
   }
   return (
     <div className={`appContainer ${modeAppcont}`} >
